@@ -1,21 +1,29 @@
 var React = require("react");
-var ReactDOM = require("react-dom");
 var UserCreationForm = require("./UserCreationForm");
 
 class CreateUser extends React.Component {
   constructor(props) {
     super(props);
+    this.onUserInscription = this.onUserInscription.bind(this);
+    this.updateUser = this.updateUser.bind(this);
   }
 
-  onUserChange(user) {
-      alert("onUserChange");
+  onUserInscription(event) {
+    event.preventDefault();
+  }
+
+  updateUser (event) {
+    var user = this.state.user;
+    user[event.target.name] = event.target.value;
+
+    this.setState({ user: user });
   }
 
   render() {
     return (
       <UserCreationForm
-        user={ "" }
-        onUserChange={ this.onUserChange }
+      onUserChange= {this.updateUser}
+        onUserInscription={ this.onUserInscription }
       />
     );
   }

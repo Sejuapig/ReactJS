@@ -1,27 +1,29 @@
+var React = require("react");
 function UserCreationForm(props) {
-  var user = props.user;
     return (
-      <form>
+      <form >
         <label>Name</label>
         <input
-           name="Nom"
-           value={ user.name }
+           name="name"
         />
+
         <label>Password</label>
         <input
-           name="Password"
-           value={ user.password }
+           name="password"
         />
+
         <label>Image</label>
         <input
-           name="Image"
-           value={ user.url }
+           name="image"
+           onInput={props.onUserChange}
         />
-        <label>Image</label>
+
+        <label>Submit</label>
         <input
            name="submit"
-           value={ user.submit }
-           onInput={ props.updateUser }
+           value={"Submit"}
+           onClick={ props.onUserInscription }
+           type = "button"
         />
       </form>
     );
