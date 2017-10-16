@@ -1,6 +1,4 @@
-var React = require("./viewCreateUser");
-
-function UserForm(props) {
+function UserCreationForm(props) {
   var user = props.user;
     return (
       <form>
@@ -29,4 +27,4 @@ function UserForm(props) {
     );
 }
 
-module.exports = viewCreateUser;
+module.exports = UserCreationForm;
