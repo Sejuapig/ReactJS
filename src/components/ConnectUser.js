@@ -1,18 +1,18 @@
 var React = require("react");
-var UserCreationForm = require("./UserCreationForm");
+var UserConnectForm = require("./UserConnectForm");
 
-class CreateUser extends React.Component {
+class ConnectUser extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {user : {name : "", password : "", image : ""}};
-    this.createUser = this.createUser.bind(this);
+    this.state = {user : {name : "", password : ""}};
+    this.connectUser = this.connectUser.bind(this);
     this.updateUser = this.updateUser.bind(this);
   }
 
-  createUser(event) {
+  connectUser(event) {
     event.preventDefault();
     var user = this.state.user;
-    if(user.name != "" && user.password != "" && user.image != ""){
+    if(user.name != "" && user.password != ""){
       var headers = new Headers();
       headers.append("Content-Type", "application/json");
 
@@ -23,7 +23,7 @@ class CreateUser extends React.Component {
         cache : 'default',
         body : JSON.stringify(user) };
 
-      var request = "https://messy.now.sh/join";
+      var request = "https://messy.now.sh/authenticate";
 
       fetch(request, init)
       .then(function(response){
@@ -31,12 +31,12 @@ class CreateUser extends React.Component {
           return response.json();
         }
         else {
-          console.log('Erreur lors de la requête de création.');
+          console.log('Erreur lors de la requête de connexion.');
         }
       })
       .then((json) => {
         console.log(json);
-        this.props.onUserCreated(json);
+        this.props.onUserConnection(json);
       })
     } else{
       alert('Veuillez remplir les champs.');
@@ -51,13 +51,13 @@ class CreateUser extends React.Component {
 
   render() {
     return (
-      <UserCreationForm
+      <UserConnectForm
         onUserChange= {this.updateUser}
-        onUserInscription={ this.createUser }
+        onUserConnection={ this.connectUser }
       />
     );
   }
 
 }
 
-module.exports = CreateUser;
+module.exports = ConnectUser;

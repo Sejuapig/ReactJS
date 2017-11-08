@@ -1,11 +1,11 @@
 var React = require("react");
 
-function UserCreationForm(props) {
+function UserConnectForm(props) {
     return (
       <div id="main">
-      <h1> Formulaire de Création </h1>
+      <h1> Formulaire de Connexion </h1>
       <br/>
-      <form onSubmit={ props.onUserInscription }>
+      <form onSubmit={ props.onUserConnection }>
         <label>Name : </label>
         <input
            name="name"
@@ -16,13 +16,6 @@ function UserCreationForm(props) {
         <label>Password : </label>
         <input
            name="password"
-           onInput={props.onUserChange}
-        />
-        <br/>
-
-        <label>Image : </label>
-        <input
-           name="image"
            onInput={props.onUserChange}
         />
         <br/>
@@ -38,4 +31,4 @@ function UserCreationForm(props) {
     );
 }
 
-module.exports = UserCreationForm;
+module.exports = UserConnectForm;
